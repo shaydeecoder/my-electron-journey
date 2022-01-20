@@ -25,6 +25,13 @@ const menuTemplate = [
       { label: "New Todo" },
       {
         label: "Quit",
+        accelerator: (() => {
+          // Hotkeys for macOS
+          if (process.platform === "darwin") return "Command+Q";
+
+          // Hotkeys for linux & windows
+          return "Ctrl+Q";
+        })(),
         click() {
           app.quit();
         },
