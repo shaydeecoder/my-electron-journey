@@ -12,6 +12,9 @@ app.on("ready", () => {
 
   // Build mainMenu from template
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
+
+  // Set mainMenu as application menu
+  Menu.setApplicationMenu(mainMenu);
 });
 
 // Create menuTemplate
