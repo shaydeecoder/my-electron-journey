@@ -21,5 +21,11 @@ app.on("ready", () => {
 const menuTemplate = [
   {
     label: "File",
+    submenu: [{ label: "New Todo" }],
   },
 ];
+
+// If platform is macOS (darwin), Add empty obj as first value to menuTemplate
+if (process.platform === "darwin") {
+  menuTemplate.unshift({});
+}
