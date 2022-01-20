@@ -1,6 +1,6 @@
 const electron = require("electron");
 
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow, Menu } = electron;
 
 let mainWindow;
 
@@ -10,3 +10,10 @@ app.on("ready", () => {
   // Link main.html to mainWindow
   mainWindow.loadURL(`file://${__dirname}/main.html`);
 });
+
+// Create menuTemplate
+const menuTemplate = [
+  {
+    label: "File",
+  },
+];
