@@ -10,6 +10,9 @@ app.on("ready", () => {
   // Link main.html to mainWindow
   mainWindow.loadURL(`file://${__dirname}/main.html`);
 
+  // Close all apps processes on close
+  mainWindow.on("closed", () => app.quit());
+
   // Build mainMenu from template
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
 
@@ -24,6 +27,8 @@ function createAddWindow() {
     height: 200,
     title: "Add New Todo",
   });
+
+  addWindow.loadURL(`file://${__dirname}/add.html`);
 }
 
 // Create menuTemplate
