@@ -6,10 +6,10 @@ let mainWindow, addWindow;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    // webPreferences: {
-    //   nodeIntegration: true,
-    //   contextIsolation: false,
-    // },
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
   // Link main.html to mainWindow
@@ -91,6 +91,7 @@ if (process.env.NODE_ENV !== "production") {
   menuTemplate.push({
     label: "View",
     submenu: [
+      { role: "reload" },
       {
         label: "Toggle Developer Tools",
         accelerator:
