@@ -64,6 +64,12 @@ const menuTemplate = [
         },
       },
       {
+        label: "Clear Todo",
+        click() {
+          mainWindow.webContents.send("todo:clear");
+        },
+      },
+      {
         label: "Quit",
         accelerator: (() => {
           // Hotkeys for macOS
