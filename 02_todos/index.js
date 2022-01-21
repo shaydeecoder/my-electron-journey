@@ -63,3 +63,21 @@ const menuTemplate = [
 if (process.platform === "darwin") {
   menuTemplate.unshift({});
 }
+
+// Check environment - production, development, staging, test
+// Add DevTools if env is not production
+if (process.env.NODE_ENV !== "production") {
+  menuTemplate.push({
+    label: "View",
+    submenu: [
+      {
+        label: "Toggle Developer Tools",
+        accelerator:
+          process.platform === "darwin" ? "Command+Alt+I" : "Ctrl+Shift+I",
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools();
+        },
+      },
+    ],
+  });
+}
