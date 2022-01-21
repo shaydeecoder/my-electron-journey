@@ -5,7 +5,12 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 let mainWindow, addWindow;
 
 app.on("ready", () => {
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+    // webPreferences: {
+    //   nodeIntegration: true,
+    //   contextIsolation: false,
+    // },
+  });
 
   // Link main.html to mainWindow
   mainWindow.loadURL(`file://${__dirname}/main.html`);
@@ -26,15 +31,25 @@ function createAddWindow() {
     width: 300,
     height: 200,
     title: "Add New Todo",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
   addWindow.loadURL(`file://${__dirname}/add.html`);
+
+  // Garbage collection & cleanup
+  addWindow.on("closed", () => (addWindow = null));
 }
 
 // Receive todo from addWindow process
 ipcMain.on("todo:add", (event, todo) => {
   // Send todo to mainWindow process
   mainWindow.webContents.send("todo:add", todo);
+
+  // Programmatically close addWindow after submit
+  addWindow.close();
 });
 
 // Create menuTemplate
