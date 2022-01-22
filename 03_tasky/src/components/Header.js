@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default () => {
+const Header = () => {
   return (
     <nav>
       <div className="nav-wrapper">
@@ -24,3 +24,5 @@ export default () => {
     </nav>
   );
 };
+
+export default Header;
